@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 
 void main() => runApp(new MyApp());
@@ -19,22 +18,19 @@ class _MyAppState extends State<MyApp> {
 
   void _login() async {
     final TwitterLoginResult result = await twitterLogin.authorize();
-    String newMessage;
-
-    switch (result.status) {
-      case TwitterLoginStatus.loggedIn:
-        newMessage = 'Logged in! username: ${result.session.username}';
-        break;
-      case TwitterLoginStatus.cancelledByUser:
-        newMessage = 'Login cancelled by user.';
-        break;
-      case TwitterLoginStatus.error:
-        newMessage = 'Login error: ${result.errorMessage}';
-        break;
-    }
 
     setState(() {
-      _message = newMessage;
+      switch (result.status) {
+        case TwitterLoginStatus.loggedIn:
+          _message = 'Logged in! username: ${result.session!.username}';
+          break;
+        case TwitterLoginStatus.cancelledByUser:
+          _message = 'Login cancelled by user.';
+          break;
+        case TwitterLoginStatus.error:
+          _message = 'Login error: ${result.errorMessage}';
+          break;
+      }
     });
   }
 

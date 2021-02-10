@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety
+
+Migrated to null safety.
+
 ## 1.1.0
 
 * Dart 2 support! There should not be any breaking changes. Please do file issues if you have problems.
