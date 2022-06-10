@@ -8,10 +8,13 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => new _MyAppState();
 }
 
+const consumerKey = 'bxsKJAuE7fa5Q4ExCE00QzPMe';
+const consumerSecret = 'UGXit0vDa21kpZd4ZyuZ1sH7XT5p5nescXYbihhViB4NjfILa2';
+
 class _MyAppState extends State<MyApp> {
   static final TwitterLogin twitterLogin = new TwitterLogin(
-    consumerKey: 'YOURCONSUMERKEY',
-    consumerSecret: 'YOURSECRET',
+    consumerKey: consumerKey,
+    consumerSecret: consumerSecret,
   );
 
   String _message = 'Logged out.';
@@ -54,11 +57,11 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(_message),
-              new RaisedButton(
+              new ElevatedButton(
                 child: new Text('Log in'),
                 onPressed: _login,
               ),
-              new RaisedButton(
+              new ElevatedButton(
                 child: new Text('Log out'),
                 onPressed: _logout,
               ),

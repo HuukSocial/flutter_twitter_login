@@ -5,10 +5,11 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:7.1.2'
     }
 }
 
@@ -16,13 +17,19 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         minSdkVersion 16
@@ -34,5 +41,5 @@ android {
 }
 
 dependencies {
-    api 'com.twitter.sdk.android:twitter-core:3.1.1'
+    api 'com.twitter.sdk.android:twitter-core:3.3.0'
 }

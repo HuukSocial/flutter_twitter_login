@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 /// A Flutter plugin for authenticating users by using the native Twitter
@@ -17,7 +16,7 @@ class TwitterLogin {
   TwitterLogin({
     required this.consumerKey,
     required this.consumerSecret,
-  })   : assert(consumerKey.isNotEmpty, 'Consumer key may not be empty.'),
+  })  : assert(consumerKey.isNotEmpty, 'Consumer key may not be empty.'),
         assert(consumerSecret.isNotEmpty, 'Consumer secret may not be empty.'),
         _keys = {
           'consumerKey': consumerKey,

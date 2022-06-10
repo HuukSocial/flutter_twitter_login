@@ -1,7 +1,6 @@
 name: flutter_twitter_login
 description: A Flutter plugin for allowing users to authenticate with native Android &amp; iOS Twitter login SDKs.
-version: 2.0.0-nullsafety
-author: Iiro Krankka <iiro.krankka@gmail.com>
+version: 3.0.0
 homepage: https://github.com/roughike/flutter_twitter_login
 
 dependencies:

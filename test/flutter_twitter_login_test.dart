@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_twitter_login/flutter_twitter_login.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,24 +10,24 @@ void main() {
       'com.roughike/flutter_twitter_login',
     );
 
-    const kSessionMap = const {
+    const sesson = const {
       'username': 'test_user_name',
       'userId': 'abc123',
       'token': 'test_access_token',
       'secret': 'test_secret',
     };
 
-    const kLoggedInResponse = const {
+    const loggedInResponse = const {
       'status': 'loggedIn',
-      'session': kSessionMap,
+      'session': sesson,
     };
 
-    const kTokenAndSecretArguments = const {
+    const tokenAndSecret = const {
       'consumerKey': 'consumer_key',
       'consumerSecret': 'consumer_secret',
     };
 
-    const kErrorResponse = const {
+    const errorResponse = const {
       'status': 'error',
       'errorMessage': 'test error message',
     };
@@ -75,21 +73,21 @@ void main() {
       expect(log, [
         isMethodCall(
           'getCurrentSession',
-          arguments: kTokenAndSecretArguments,
+          arguments: tokenAndSecret,
         ),
       ]);
     });
 
     test('get isSessionActive - true when currentSession is not null',
         () async {
-      setMethodCallResponse(kSessionMap);
+      setMethodCallResponse(sesson);
 
       final bool isSessionActive = await sut.isSessionActive;
       expect(isSessionActive, isTrue);
       expect(log, [
         isMethodCall(
           'getCurrentSession',
-          arguments: kTokenAndSecretArguments,
+          arguments: tokenAndSecret,
         ),
       ]);
     });
@@ -102,39 +100,39 @@ void main() {
       expect(log, [
         isMethodCall(
           'getCurrentSession',
-          arguments: kTokenAndSecretArguments,
+          arguments: tokenAndSecret,
         ),
       ]);
     });
 
     test('get currentSession - parses session correctly', () async {
-      setMethodCallResponse(kSessionMap);
+      setMethodCallResponse(sesson);
 
       final session = await sut.currentSession;
       expectSessionParsedCorrectly(session!);
       expect(log, [
         isMethodCall(
           'getCurrentSession',
-          arguments: kTokenAndSecretArguments,
+          arguments: tokenAndSecret,
         ),
       ]);
     });
 
     test('authorize - calls the right method', () async {
-      setMethodCallResponse(kLoggedInResponse);
+      setMethodCallResponse(loggedInResponse);
 
       await sut.authorize();
 
       expect(log, [
         isMethodCall(
           'authorize',
-          arguments: kTokenAndSecretArguments,
+          arguments: tokenAndSecret,
         ),
       ]);
     });
 
     test('authorize - user logged in', () async {
-      setMethodCallResponse(kLoggedInResponse);
+      setMethodCallResponse(loggedInResponse);
 
       final TwitterLoginResult result = await sut.authorize();
 
@@ -161,7 +159,7 @@ void main() {
     });
 
     test('authorize - error', () async {
-      setMethodCallResponse(kErrorResponse);
+      setMethodCallResponse(errorResponse);
 
       final TwitterLoginResult result = await sut.authorize();
       expect(result.status, TwitterLoginStatus.error);
@@ -175,20 +173,20 @@ void main() {
       expect(log, [
         isMethodCall(
           'logOut',
-          arguments: kTokenAndSecretArguments,
+          arguments: tokenAndSecret,
         )
       ]);
     });
 
     test('access token equality test', () {
-      final TwitterSession first = new TwitterSession.fromMap(kSessionMap);
-      final TwitterSession second = new TwitterSession.fromMap(kSessionMap);
+      final TwitterSession first = new TwitterSession.fromMap(sesson);
+      final TwitterSession second = new TwitterSession.fromMap(sesson);
 
       expect(first, equals(second));
     });
 
     test('access token from and to Map', () async {
-      final TwitterSession session = new TwitterSession.fromMap(kSessionMap);
+      final TwitterSession session = new TwitterSession.fromMap(sesson);
 
       expectSessionParsedCorrectly(session);
       expect(
