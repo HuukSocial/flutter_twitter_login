@@ -18,6 +18,7 @@ rootProject.allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -41,5 +42,5 @@ android {
 }
 
 dependencies {
-    api 'com.twitter.sdk.android:twitter-core:3.3.0'
+    api 'com.github.HuukSocial:twitter-kit-android:f8303e2fe7'
 }
